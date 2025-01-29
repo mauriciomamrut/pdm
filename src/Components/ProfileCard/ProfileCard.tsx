@@ -18,6 +18,8 @@ interface ProfileCardProps {
   avatar: string;
   description?: string;
   onEdit?: () => void;
+  isExpanded: boolean;
+  onExpand: () => void;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
@@ -25,8 +27,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   avatar,
   description,
   onEdit,
+  isExpanded,
+  onExpand,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
 
@@ -51,7 +54,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           </Description>
         )}
         {description && isOverflowing && (
-          <ExpandButton onClick={() => setIsExpanded(!isExpanded)}>
+          <ExpandButton onClick={onExpand}>
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </ExpandButton>
         )}

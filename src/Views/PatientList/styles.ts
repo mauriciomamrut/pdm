@@ -1,11 +1,28 @@
 import styled from "@emotion/styled";
 
 export const PatientListContainer = styled.div(() => ({
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+  display: "flex",
   gap: "1rem",
   width: "100%",
   padding: "1rem",
+}));
+
+export const Column = styled.div(() => ({
+  flex: "1",
+  display: "flex",
+  flexDirection: "column" as const,
+  gap: "1rem",
+  minWidth: "300px",
+  "@media (max-width: 1000px)": {
+    "&:nth-of-type(3)": {
+      display: "none",
+    },
+  },
+  "@media (max-width: 700px)": {
+    "&:nth-of-type(2)": {
+      display: "none",
+    },
+  },
 }));
 
 export const MainContainer = styled.div(() => ({

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DefaultAvatar from "../../Assets/Default_Avatar.png";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -26,20 +26,31 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   description,
   onEdit,
 }) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (descriptionRef.current) {
+      const element = descriptionRef.current;
+      setIsOverflowing(element.scrollHeight > element.clientHeight);
+    }
+  }, [description]);
 
   return (
     <CardContainer isExpanded={isExpanded}>
-      <EditButton onClick={onEdit}>
+      <EditButton className="edit-button" onClick={onEdit}>
         <EditIcon />
       </EditButton>
       <Avatar src={DefaultAvatar} alt={name} />
       <InfoContainer>
         <Name>{name}</Name>
         {description && (
-          <Description isExpanded={isExpanded}>{description}</Description>
+          <Description ref={descriptionRef} isExpanded={isExpanded}>
+            {description}
+          </Description>
         )}
-        {description && (
+        {description && isOverflowing && (
           <ExpandButton onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </ExpandButton>

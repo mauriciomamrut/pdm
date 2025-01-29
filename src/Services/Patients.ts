@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface Patient {
+export interface Patient {
   id: string;
   name: string;
   avatar: string;

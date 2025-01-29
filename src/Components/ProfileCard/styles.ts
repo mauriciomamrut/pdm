@@ -11,12 +11,15 @@ export const CardContainer = styled.div<{ isExpanded: boolean }>(
     gap: "0.75rem",
     backgroundColor: "white",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    maxWidth: "450px",
-    width: "100%",
+    width: "400",
     height: isExpanded ? "auto" : "120px",
     minHeight: "120px",
     transition: "all 0.3s ease-in-out",
     transform: isExpanded ? "scale(1.02)" : "scale(1)",
+    "&:hover .edit-button": {
+      opacity: 1,
+      visibility: "visible",
+    },
   })
 );
 
@@ -98,6 +101,8 @@ export const EditButton = styled.button(() => ({
   alignItems: "center",
   justifyContent: "center",
   transition: "all 0.2s ease-in-out",
+  opacity: 0,
+  visibility: "hidden" as const,
   "&:hover": {
     color: "#0066cc",
     transform: "scale(1.1)",

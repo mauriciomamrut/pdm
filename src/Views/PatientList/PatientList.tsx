@@ -42,6 +42,7 @@ const PatientList = () => {
     setSelectedPatient(null);
     setIsEdit(false);
     setIsModalOpen(true);
+    setExpandedPatientId(null);
   };
 
   const handleSave = (data: { name: string; description: string }) => {
@@ -64,6 +65,7 @@ const PatientList = () => {
     setIsModalOpen(false);
     setSelectedPatient(null);
     setIsEdit(false);
+    setExpandedPatientId(null);
   };
 
   const handleExpand = (patientId: string) => {

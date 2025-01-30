@@ -15,6 +15,7 @@ export const HeaderContainer = styled.header(() => ({
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
   paddingBottom: "1rem",
   paddingTop: "1rem",
+  borderRadius: "1rem 1rem 0 0",
 }));
 
 export const Title = styled.h1(() => ({

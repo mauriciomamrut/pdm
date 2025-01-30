@@ -5,7 +5,6 @@ export const PatientListContainer = styled.div(() => ({
   gap: "1rem",
   padding: "1rem",
   overflow: "visible",
-  width: "100%",
   marginBottom: "1rem",
 }));
 

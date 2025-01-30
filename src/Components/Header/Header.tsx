@@ -9,7 +9,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onAddClick }) => {
   return (
     <HeaderContainer>
-      <Title>Patient List</Title>
+      <Title>Patient Data Management</Title>
       <AddButton onClick={onAddClick}>
         <AddIcon />
         Add Patient

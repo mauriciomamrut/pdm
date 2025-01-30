@@ -3,8 +3,10 @@ import styled from "@emotion/styled";
 export const PatientListContainer = styled.div(() => ({
   display: "flex",
   gap: "1rem",
-  width: "100%",
   padding: "1rem",
+  overflow: "visible",
+  width: "100%",
+  marginBottom: "1rem",
 }));
 
 export const Column = styled.div(() => ({
@@ -30,6 +32,10 @@ export const MainContainer = styled.div(() => ({
   flexDirection: "column" as const,
   alignItems: "center",
   maxWidth: "1200px",
-  margin: "0 auto",
+  margin: "1.2rem auto",
   width: "100%",
+  backgroundColor: "#F8FAFC",
+  borderRadius: "1rem",
+  overflow: "visible",
+  minHeight: "calc(100vh - 2.4rem)",
 }));

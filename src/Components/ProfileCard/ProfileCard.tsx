@@ -31,6 +31,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   onExpand,
 }) => {
   const [isOverflowing, setIsOverflowing] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -45,7 +46,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       <EditButton className="edit-button" onClick={onEdit}>
         <EditIcon />
       </EditButton>
-      <Avatar src={DefaultAvatar} alt={name} />
+      <Avatar
+        src={imageError ? DefaultAvatar : avatar || DefaultAvatar}
+        alt={name}
+        onError={() => setImageError(true)}
+      />
       <InfoContainer>
         <Name>{name}</Name>
         {description && (

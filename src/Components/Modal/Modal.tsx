@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-hot-toast";
+
+import { PatientFormData, patientSchema } from "../../Utils/schemas";
 import {
   ModalOverlay,
   ModalContainer,
@@ -14,7 +17,6 @@ import {
   ButtonGroup,
   Button,
 } from "./styles";
-import { toast } from "react-hot-toast";
 
 interface EditModalProps {
   open: boolean;
@@ -26,14 +28,6 @@ interface EditModalProps {
   };
   isEdit?: boolean;
 }
-
-// Define validation schema
-const patientSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  description: z.string().min(1, "Description is required"),
-});
-
-type PatientFormData = z.infer<typeof patientSchema>;
 
 const EditModal: React.FC<EditModalProps> = ({
   open,
@@ -52,7 +46,7 @@ const EditModal: React.FC<EditModalProps> = ({
     defaultValues: initialData,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       reset(initialData);
     }

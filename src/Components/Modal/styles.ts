@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const ModalOverlay = styled.div(() => ({
+export const ModalOverlay = styled.div<{ isOpen: boolean }>(({ isOpen }) => ({
   position: "fixed" as const,
   top: 0,
   left: 0,
@@ -11,15 +11,21 @@ export const ModalOverlay = styled.div(() => ({
   alignItems: "center",
   justifyContent: "center",
   zIndex: 1000,
+  opacity: isOpen ? 1 : 0,
+  visibility: isOpen ? "visible" : "hidden",
+  transition: "opacity 0.3s ease, visibility 0.3s ease",
 }));
 
-export const ModalContainer = styled.div(() => ({
+export const ModalContainer = styled.div<{ isOpen: boolean }>(({ isOpen }) => ({
   backgroundColor: "white",
   borderRadius: "8px",
   padding: "20px",
   width: "90%",
   maxWidth: "500px",
   boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+  transform: isOpen ? "translateY(0)" : "translateY(-20px)",
+  opacity: isOpen ? 1 : 0,
+  transition: "transform 0.3s ease, opacity 0.3s ease",
 }));
 
 export const ModalTitle = styled.h2(() => ({

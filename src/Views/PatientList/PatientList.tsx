@@ -22,6 +22,24 @@ const PatientList = () => {
     handleExpand,
   } = usePatientList();
 
+  const renderColumn = (columnIndex: number) => (
+    <Column key={columnIndex}>
+      {localPatients
+        .filter((_, index) => index % 3 === columnIndex)
+        .map((patient) => (
+          <ProfileCard
+            key={patient.id}
+            name={patient.name}
+            avatar={patient.avatar}
+            description={patient.description}
+            onEdit={() => handleEdit(patient)}
+            isExpanded={expandedPatientId === patient.id}
+            onExpand={() => handleExpand(patient.id)}
+          />
+        ))}
+    </Column>
+  );
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading users</div>;
 
@@ -29,51 +47,7 @@ const PatientList = () => {
     <MainContainer>
       <Header onAddClick={handleAdd} />
       <PatientListContainer>
-        <Column>
-          {localPatients
-            .filter((_, index) => index % 3 === 0)
-            .map((patient) => (
-              <ProfileCard
-                key={patient.id}
-                name={patient.name}
-                avatar={patient.avatar}
-                description={patient.description}
-                onEdit={() => handleEdit(patient)}
-                isExpanded={expandedPatientId === patient.id}
-                onExpand={() => handleExpand(patient.id)}
-              />
-            ))}
-        </Column>
-        <Column>
-          {localPatients
-            .filter((_, index) => index % 3 === 1)
-            .map((patient) => (
-              <ProfileCard
-                key={patient.id}
-                name={patient.name}
-                avatar={patient.avatar}
-                description={patient.description}
-                onEdit={() => handleEdit(patient)}
-                isExpanded={expandedPatientId === patient.id}
-                onExpand={() => handleExpand(patient.id)}
-              />
-            ))}
-        </Column>
-        <Column>
-          {localPatients
-            .filter((_, index) => index % 3 === 2)
-            .map((patient) => (
-              <ProfileCard
-                key={patient.id}
-                name={patient.name}
-                avatar={patient.avatar}
-                description={patient.description}
-                onEdit={() => handleEdit(patient)}
-                isExpanded={expandedPatientId === patient.id}
-                onExpand={() => handleExpand(patient.id)}
-              />
-            ))}
-        </Column>
+        {[0, 1, 2].map((columnIndex) => renderColumn(columnIndex))}
 
         <Modal
           open={isModalOpen}

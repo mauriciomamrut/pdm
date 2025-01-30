@@ -52,11 +52,9 @@ const EditModal: React.FC<EditModalProps> = ({
     }
   }, [open, initialData, reset]);
 
-  if (!open) return null;
-
   const onSubmit = async (data: PatientFormData) => {
     try {
-      await onSave(data);
+      onSave(data);
       toast.success(
         isEdit ? "Patient updated successfully" : "Patient created successfully"
       );
@@ -72,8 +70,8 @@ const EditModal: React.FC<EditModalProps> = ({
   };
 
   return (
-    <ModalOverlay onClick={onClose}>
-      <ModalContainer onClick={(e) => e.stopPropagation()}>
+    <ModalOverlay isOpen={open} onClick={onClose}>
+      <ModalContainer isOpen={open} onClick={(e) => e.stopPropagation()}>
         <ModalTitle>{isEdit ? "Edit Profile" : "New Patient"}</ModalTitle>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputGroup>

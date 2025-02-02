@@ -6,10 +6,6 @@ This project was created as part of a technical test in the Light It recruitment
 
 1. Clone the repository
 
-bash
-git clone [repository-url]
-cd [project-directory]
-
 2. Install dependencies
 
 bash
